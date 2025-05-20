@@ -19,6 +19,13 @@ const styles = (theme) => ({
     alignItems: "center",
     textAlign: "center",
   },
+  video: {
+    width: "100%", // Take full width of card
+    maxHeight: "200px", // Limit height
+    objectFit: "cover", // Cover the area, might crop
+    borderRadius: theme.shape.borderRadius,
+    marginBottom: theme.spacing(2), // Space below video
+  },
   title: {
     marginBottom: theme.spacing(2),
   },
@@ -34,15 +41,18 @@ const styles = (theme) => ({
 const cardContent = [
   {
     title: "Community",
-    description: "Descrizione della community...", // Placeholder text
+    description: "Un ecosistema digitale dove stringere connessioni di valore e condividere idee, esperienze e opportunità. Topic tematici, discussioni semplificate dall’AI e spazi pensati per chi vuole crescere insieme agli altri.",
+    videoSrc: "/videos/logged_out/section_videos/video1.mp4",
   },
   {
-    title: "Formazione",
-    description: "Descrizione della formazione...", // Placeholder text
+    title: "Nuova formazione",
+    description: "Un feed con video brevi e chiari, pensati per imparare in modo veloce. Mentor, tutor e aziende che condividono un nuovo concetto di formazione basato sull’AI applicata ai più svariati ambiti del lavoro.",
+    videoSrc: "/videos/logged_out/section_videos/video2.mp4",
   },
   {
     title: "Placement",
-    description: "Descrizione del placement...", // Placeholder text
+    description: "Un motore di matching che connette i profili formati con le aziende in cerca di giovani ad alto potenziale. Portfolio dinamici, tracciabilità delle competenze, e analytics per un recruiting più mirato, efficace e veloce",
+    videoSrc: "/videos/logged_out/section_videos/video3.mp4",
   },
 ];
 
@@ -54,13 +64,24 @@ function ThreeCardsSection(props) {
     <div style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container-fluid lg-p-top">
         <Typography variant="h3" align="center" className="lg-mg-bottom">
-          Community, Formazione, Placement {/* Update title later */}
+          Pillars
         </Typography>
         <div className="container-fluid">
           <Grid container spacing={isWidthUpMd ? 8 : 4} justifyContent="center">
             {cardContent.map((item, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card className={classes.card}>
+                  {item.videoSrc && (
+                    <video
+                      className={classes.video}
+                      src={item.videoSrc}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      alt={item.title} // Accessibility: describe the video content
+                    />
+                  )}
                   <Typography variant="h5" className={classes.title}>
                     {item.title}
                   </Typography>

@@ -5,7 +5,6 @@ import { Grid, Typography, Button, Hidden, Box } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -32,6 +31,12 @@ const styles = (theme) => ({
     paddingBottom: theme.spacing(2),
   },
   image: {
+    maxWidth: "100%",
+    verticalAlign: "middle",
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[4],
+  },
+  video: { // Style for the video
     maxWidth: "100%",
     verticalAlign: "middle",
     borderRadius: theme.shape.borderRadius,
@@ -66,11 +71,44 @@ const styles = (theme) => ({
     color: theme.palette.common.white, // White color for "niente spam"
     marginTop: theme.spacing(1), // Add some space above
   },
+  compotentialTitle: {
+    fontSize: "4.5rem", // Significantly larger
+    fontWeight: "900", // Bolder
+    lineHeight: 1.2,
+    textAlign: "center", // Center the title
+    color: theme.palette.common.white,
+    textShadow: "3px 3px 6px rgba(0,0,0,0.4)", // More pronounced shadow
+    [theme.breakpoints.down("md")]: {
+      fontSize: "3.5rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2.5rem",
+    },
+  },
+  subtitleText: {
+    color: theme.palette.common.white,
+    textAlign: "center",
+    marginTop: theme.spacing(2), // Add some space below the main title
+    marginBottom: theme.spacing(3), // Add some space above the button
+    fontSize: theme.typography.h6.fontSize,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: theme.typography.body1.fontSize,
+    },
+  },
+  newParagraph: {
+    color: theme.palette.common.white,
+    textAlign: "left",
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(3),
+    fontSize: theme.typography.body1.fontSize,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: theme.typography.body2.fontSize,
+    },
+  },
 });
 
 function HeadSection(props) {
   const { classes, theme } = props;
-  const isWidthUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <Fragment>
@@ -89,19 +127,23 @@ function HeadSection(props) {
                     alignItems="center"
                   >
                     <Box mb={4}>
-                      <Typography variant={isWidthUpLg ? "h3" : "h4"} className={classes.whiteText}>
-                        Free Template for building a SaaS app using
-                        Material-UI {/* Update this text later */}
+                      <Typography className={classes.compotentialTitle}>
+                        Compotential
                       </Typography>
                     </Box>
                     <div>
                       <Box mb={2}>
                         <Typography
-                          variant={isWidthUpLg ? "h6" : "body1"}
-                          className={classes.whiteText} // Apply white text class
+                          className={classes.subtitleText}
                         >
-                          Lorem ipsum dolor sit amet, consetetur sadipscing
-                          elitr, sed diam nonumy eirmod tempor invidunt {/* Update this text later */}
+                          Il <strong>network</strong> degli <strong>aspiranti professionisti</strong> per emergere con le <strong>skill</strong> più richieste
+                        </Typography>
+                      </Box>
+                      <Box mb={2}>
+                        <Typography
+                          className={classes.newParagraph}
+                        >
+                          Compotantial è l’app che collega aspiranti professionisti, aziende edTech e imprese, in un ecosistema dinamico dove le skill contano davvero. Condividi le tue competenze in mini feed, scopri corsi, eventi, e inizia a costruire opportunità concrete con chi crede nel merito.
                         </Typography>
                       </Box>
                       {/* New CTA Button */}
@@ -124,10 +166,14 @@ function HeadSection(props) {
                 </Grid>
                 <Hidden mdDown>
                   <Grid item md={6}>
-                    <ZoomImage
-                      src={`${process.env.PUBLIC_URL}/images/logged_out/headerImage.jpg`}
-                      className={classes.image}
-                      alt="header example"
+                    <video
+                      className={classes.video} // Use the new video style
+                      src="/videos/logged_out/section_videos/video4.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      alt="header video"
                     />
                   </Grid>
                 </Hidden>

@@ -78,9 +78,9 @@ const styles = (theme) => ({
 });
 
 const videosData = [
-  { src: "/videos/logged_out/reel1.mp4", alt: "Reel 1", tags: ["OpenAI 4.1", "Prompt Engineering"] },
-  { src: "/videos/logged_out/reel2.mp4", alt: "Reel 2", tags: ["Web Development", "Font"] },
-  { src: "/videos/logged_out/reel3.mp4", alt: "Reel 3", tags: ["GLM", "Github"] },
+  { src: "/videos/logged_out/reels/reel1.mp4", alt: "Reel 1", tags: ["OpenAI 4.1", "Prompt Engineering"] },
+  { src: "/videos/logged_out/reels/reel2.mp4", alt: "Reel 2", tags: ["Web Development", "Font"] },
+  { src: "/videos/logged_out/reels/reel3.mp4", alt: "Reel 3", tags: ["GLM", "Github"] },
 ];
 
 function ReelSection(props) {

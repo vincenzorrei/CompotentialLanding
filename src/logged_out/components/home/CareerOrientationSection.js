@@ -18,6 +18,12 @@ const styles = (theme) => ({
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[4],
   },
+  video: { // Style for the video
+    maxWidth: "100%",
+    verticalAlign: "middle",
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[4],
+  },
   container: {
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(12),
@@ -61,10 +67,14 @@ function CareerOrientationSection(props) {
           {/* Image Section (Right) */}
           <Hidden mdDown>
             <Grid item md={6}>
-              <ZoomImage
-                src={`${process.env.PUBLIC_URL}/images/logged_out/image3.jpg`} // Placeholder image
-                className={classes.image}
-                alt="Career Orientation example"
+              <video
+                className={classes.video} // Use the new video style
+                src="/videos/logged_out/section_videos/video5.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                alt="Career Orientation example video"
               />
             </Grid>
           </Hidden>
