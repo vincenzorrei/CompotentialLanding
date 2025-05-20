@@ -1,24 +1,24 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button, Hidden, IconButton, Box } from "@mui/material";
+import { AppBar, Toolbar, Button, Hidden, IconButton, Box } from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
 import BookIcon from "@mui/icons-material/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 
 const styles = theme => ({
   appBar: {
-    boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white
+    boxShadow: "0 4px 20px rgba(0,0,0,0.05)", // Thinner, more modern shadow
+    backgroundColor: theme.palette.common.white,
+    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
   },
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center", // Align items vertically in the center
+    alignItems: "center",
+    padding: theme.spacing(1, 2), // More precise padding
   },
   brandText: {
     flexGrow: 1, // Allow logo area to grow
@@ -33,7 +33,12 @@ const styles = theme => ({
   },
   menuButtonText: {
     fontSize: theme.typography.body1.fontSize,
-    fontWeight: theme.typography.h6.fontWeight
+    fontWeight: 600, // More prominent text
+    textTransform: "none", // Remove default uppercase of buttons
+    transition: "color 0.3s ease",
+    "&:hover": {
+      color: theme.palette.primary.main, // Change color on hover
+    }
   },
   noDecoration: {
     textDecoration: "none !important"
@@ -43,8 +48,6 @@ const styles = theme => ({
 function NavBar(props) {
   const {
     classes,
-    openRegisterDialog,
-    openLoginDialog,
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
     mobileDrawerOpen,
@@ -64,23 +67,7 @@ function NavBar(props) {
     }
   ];
 
-  const rightMenuItems = [
-    {
-      link: "/blog",
-      name: "Blog",
-      icon: <BookIcon className="text-white" />
-    },
-    {
-      name: "Register",
-      onClick: openRegisterDialog,
-      icon: <HowToRegIcon className="text-white" />
-    },
-    {
-      name: "Login",
-      onClick: openLoginDialog,
-      icon: <LockOpenIcon className="text-white" />
-    }
-  ];
+  const rightMenuItems = [];
 
   return (
     <div className={classes.root}>
@@ -176,9 +163,7 @@ NavBar.propTypes = {
   handleMobileDrawerOpen: PropTypes.func,
   handleMobileDrawerClose: PropTypes.func,
   mobileDrawerOpen: PropTypes.bool,
-  selectedTab: PropTypes.string,
-  openRegisterDialog: PropTypes.func.isRequired,
-  openLoginDialog: PropTypes.func.isRequired
+  selectedTab: PropTypes.string
 };
 
 export default withStyles(styles, { withTheme: true })(memo(NavBar));

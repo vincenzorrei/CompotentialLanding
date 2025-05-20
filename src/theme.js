@@ -1,12 +1,8 @@
-import { createTheme, responsiveFontSizes, adaptV4Theme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 
 // colors
-const primary = "#00BFFF"; // Celeste
-const secondary = "#000080"; // Dark Navy Blue
-const orange = "#FFA500"; // Orange
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
-const background = "#f5f5f5"; // Light grey background
 const warningLight = "rgba(253, 200, 69, .3)";
 const warningMain = "rgba(253, 200, 69, .5)";
 const warningDark = "rgba(253, 200, 69, .7)";
@@ -25,10 +21,23 @@ const xs = 0;
 // spacing
 const spacing = 8;
 
-const theme = createTheme(adaptV4Theme({
+const theme = createTheme({
   palette: {
-    primary: { main: primary },
-    secondary: { main: secondary },
+    primary: {
+      main: "#3f51b5", // You can change this to your brand's primary color
+      light: "#757de8",
+      dark: "#002984",
+    },
+    secondary: {
+      main: "#f50057", // You can change this to a complementary color
+      light: "#ff5983",
+      dark: "#bb002f",
+    },
+    background: {
+      default: "#f5f5f5",
+      paper: "#ffffff",
+      alternate: "#eef1f6", // Alternate color for sections
+    },
     common: {
       black,
       darkBlack
@@ -42,9 +51,6 @@ const theme = createTheme(adaptV4Theme({
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
-    background: {
-      default: background
-    },
     spacing
   },
   breakpoints: {
@@ -124,6 +130,6 @@ const theme = createTheme(adaptV4Theme({
     useNextVariants: true,
     fontFamily: '"Gilroy", "Roboto", "Helvetica", "Arial", sans-serif'
   }
-}));
+});
 
 export default responsiveFontSizes(theme);

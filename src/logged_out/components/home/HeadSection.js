@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { Grid, Typography, Button, Hidden, Box } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
 import WaveBorder from "../../../shared/components/WaveBorder";
-import ZoomImage from "../../../shared/components/ZoomImage";
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -72,7 +71,7 @@ const styles = (theme) => ({
     marginTop: theme.spacing(1), // Add some space above
   },
   compotentialTitle: {
-    fontSize: "4.5rem", // Significantly larger
+    fontSize: "5rem", // Slightly larger
     fontWeight: "900", // Bolder
     lineHeight: 1.2,
     textAlign: "center", // Center the title
@@ -90,9 +89,9 @@ const styles = (theme) => ({
     textAlign: "center",
     marginTop: theme.spacing(2), // Add some space below the main title
     marginBottom: theme.spacing(3), // Add some space above the button
-    fontSize: theme.typography.h6.fontSize,
+    fontSize: "1.5rem", // Increased size
     [theme.breakpoints.down("sm")]: {
-      fontSize: theme.typography.body1.fontSize,
+      fontSize: "1.2rem", // Increased size for small screens
     },
   },
   newParagraph: {
@@ -100,9 +99,9 @@ const styles = (theme) => ({
     textAlign: "left",
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(3),
-    fontSize: theme.typography.body1.fontSize,
+    fontSize: "1.2rem", // Increased size
     [theme.breakpoints.down("sm")]: {
-      fontSize: theme.typography.body2.fontSize,
+      fontSize: "1rem", // Increased size for small screens
     },
   },
 });

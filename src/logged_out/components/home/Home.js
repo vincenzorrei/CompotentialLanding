@@ -1,28 +1,46 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import HeadSection from "./HeadSection";
-import ThreeCardsSection from "./ThreeCardsSection"; // Added
-import ReelSection from "./ReelSection"; // Added
-import NetworkingSection from "./NetworkingSection"; // Added
-import ContinuousLearningSection from "./ContinuousLearningSection"; // Added
-import CareerOrientationSection from "./CareerOrientationSection"; // Added
-// import FeatureSection from "./FeatureSection"; // Removed
-// import PricingSection from "./PricingSection"; // Removed
+import ThreeCardsSection from "./ThreeCardsSection";
+import ReelSection from "./ReelSection";
+import NetworkingSection from "./NetworkingSection";
+import ContinuousLearningSection from "./ContinuousLearningSection";
+import CareerOrientationSection from "./CareerOrientationSection";
 
 function Home(props) {
   const { selectHome } = props;
+  
   useEffect(() => {
     selectHome();
+    
+    // Initialize AOS for animations
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-out-cubic',
+    });
   }, [selectHome]);
+  
   return (
     <Fragment>
       <HeadSection />
-      <ThreeCardsSection /> {/* Added */}
-      <ReelSection /> {/* Added */}
-      <NetworkingSection /> {/* Added */}
-      <ContinuousLearningSection /> {/* Added */}
-      <CareerOrientationSection /> {/* Added */}
-      {/* New sections will be added here */}
+      <div data-aos="fade-up">
+        <ThreeCardsSection />
+      </div>
+      <div data-aos="fade-up">
+        <ReelSection />
+      </div>
+      <div data-aos="fade-right">
+        <NetworkingSection />
+      </div>
+      <div data-aos="fade-left">
+        <ContinuousLearningSection />
+      </div>
+      <div data-aos="fade-up">
+        <CareerOrientationSection />
+      </div>
     </Fragment>
   );
 }

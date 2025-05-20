@@ -1,9 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, Card, Button, Box } from "@mui/material";
-import withStyles from "@mui/styles/withStyles";
+import { Grid, Typography, Card, Box, Button } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { withTheme } from "@mui/styles";
 
 const styles = (theme) => ({
   card: {
@@ -18,23 +17,149 @@ const styles = (theme) => ({
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
+    transition: "all 0.4s ease-in-out",
+    position: "relative",
+    overflow: "hidden",
+    backgroundColor: "#ffffff",
+    boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
+    height: "550px", // Standardized height for all cards
+    "&:hover": {
+      transform: "translateY(-12px)",
+      boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+      "& $video": {
+        transform: "scale(1.05)",
+      },
+      "& $pillarLabel": {
+        opacity: 1,
+        transform: "translateY(0)",
+      },
+      "& $title": {
+        color: theme.palette.primary.main,
+      },
+      "& $cardContent": {
+        transform: "translateY(-5px)",
+      },
+    },
+    "&:before": {
+      content: '""',
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "5px",
+      background: `linear-gradient(90deg, ${theme.palette.primary.light}, ${theme.palette.primary.dark})`,
+      transform: "scaleX(0)",
+      transformOrigin: "left",
+      transition: "transform 0.4s ease",
+    },
+    "&:hover:before": {
+      transform: "scaleX(1)",
+    },
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      bottom: 0,
+      right: 0,
+      width: "30px",
+      height: "30px",
+      background: theme.palette.primary.main,
+      borderRadius: "50% 0 0 0",
+      opacity: 0,
+      transition: "opacity 0.3s ease",
+    },
+    "&:hover:after": {
+      opacity: 0.7,
+    },
   },
   video: {
     width: "100%", // Take full width of card
-    maxHeight: "200px", // Limit height
+    height: "200px", // Standardized height for all videos
     objectFit: "cover", // Cover the area, might crop
     borderRadius: theme.shape.borderRadius,
     marginBottom: theme.spacing(2), // Space below video
+    transition: "transform 0.5s ease-in-out, box-shadow 0.3s ease",
+    boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+  },
+  cardContent: {
+    transition: "transform 0.3s ease",
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   title: {
     marginBottom: theme.spacing(2),
+    fontWeight: 700,
+    fontSize: "1.5rem",
+    transition: "color 0.3s ease, transform 0.3s ease",
+    position: "relative",
+    display: "inline-block",
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      bottom: -5,
+      left: "50%",
+      width: "40px",
+      height: "3px",
+      background: theme.palette.primary.main,
+      transform: "translateX(-50%)",
+      transition: "width 0.3s ease, background 0.3s ease",
+    },
+    "&:hover": {
+      transform: "scale(1.05)",
+    },
+    "&:hover:after": {
+      width: "80px",
+      background: theme.palette.secondary.main,
+    },
   },
   button: {
     marginTop: theme.spacing(2),
+    fontWeight: 600,
+    transition: "all 0.3s ease",
+    "&:hover": {
+      transform: "scale(1.05)",
+    },
   },
   smallText: {
     fontSize: theme.typography.caption.fontSize,
     marginTop: theme.spacing(1),
+  },
+  sectionTitle: {
+    position: "relative",
+    fontWeight: 800,
+    fontSize: "3rem",
+    marginBottom: theme.spacing(8),
+    textTransform: "uppercase",
+    letterSpacing: "2px",
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      bottom: -15,
+      left: "50%",
+      transform: "translateX(-50%)",
+      width: 100,
+      height: 5,
+      backgroundColor: theme.palette.primary.main,
+      borderRadius: 10,
+    },
+  },
+  pillarLabel: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    backgroundColor: theme.palette.primary.main,
+    color: "#fff",
+    padding: "4px 12px",
+    borderRadius: 20,
+    fontWeight: 700,
+    fontSize: "0.75rem",
+    letterSpacing: "1px",
+    textTransform: "uppercase",
+    opacity: 0,
+    transform: "translateY(-10px)",
+    transition: "all 0.3s ease",
+    zIndex: 2,
   },
 });
 
@@ -63,14 +188,15 @@ function ThreeCardsSection(props) {
   return (
     <div style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container-fluid lg-p-top">
-        <Typography variant="h3" align="center" className="lg-mg-bottom">
-          Pillars
+        <Typography variant="h3" align="center" className={classes.sectionTitle}>
+          PILLARS
         </Typography>
         <div className="container-fluid">
           <Grid container spacing={isWidthUpMd ? 8 : 4} justifyContent="center">
             {cardContent.map((item, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card className={classes.card}>
+                  <div className={classes.pillarLabel}>PILLAR</div>
                   {item.videoSrc && (
                     <video
                       className={classes.video}
