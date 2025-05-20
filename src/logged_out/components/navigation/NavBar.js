@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button, Hidden, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Hidden, IconButton, Box } from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
@@ -17,15 +17,23 @@ const styles = theme => ({
   },
   toolbar: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center", // Align items vertically in the center
+  },
+  brandText: {
+    flexGrow: 1, // Allow logo area to grow
+  },
+  centerLinks: {
+    flexGrow: 1, // Allow center links area to grow
+    textAlign: "center", // Center align the links within this div
+  },
+  rightLinks: {
+    flexGrow: 1, // Allow right links area to grow
+    textAlign: "right", // Right align the links within this div
   },
   menuButtonText: {
     fontSize: theme.typography.body1.fontSize,
     fontWeight: theme.typography.h6.fontWeight
-  },
-  brandText: {
-    fontFamily: "'Baloo Bhaijaan', cursive",
-    fontWeight: 400
   },
   noDecoration: {
     textDecoration: "none !important"
@@ -42,12 +50,21 @@ function NavBar(props) {
     mobileDrawerOpen,
     selectedTab
   } = props;
-  const menuItems = [
+
+  const centerMenuItems = [
     {
       link: "/",
       name: "Home",
       icon: <HomeIcon className="text-white" />
     },
+    {
+      link: "/reel", // Assuming '/reel' is the path for the Reel section
+      name: "Reel",
+      icon: <BookIcon className="text-white" /> // Placeholder icon, replace if needed
+    }
+  ];
+
+  const rightMenuItems = [
     {
       link: "/blog",
       name: "Blog",
@@ -64,29 +81,40 @@ function NavBar(props) {
       icon: <LockOpenIcon className="text-white" />
     }
   ];
+
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <div>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="primary"
-            >
-              Wa
-            </Typography>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="secondary"
-            >
-              Ver
-            </Typography>
-          </div>
-          <div>
+          {/* Left Section (Logo) */}
+          <Box className={classes.brandText} component={Link} to="/">
+            <img src="/images/logged_out/compotential_logo.png" alt="Compotential Logo" style={{ height: '40px' }} /> {/* Adjust height as needed */}
+          </Box>
+
+          {/* Center Section (Home, Reel) */}
+          <Hidden mdDown>
+            <div className={classes.centerLinks}>
+              {centerMenuItems.map(element => (
+                <Link
+                  key={element.name}
+                  to={element.link}
+                  className={classes.noDecoration}
+                  onClick={handleMobileDrawerClose}
+                >
+                  <Button
+                    color="secondary"
+                    size="large"
+                    classes={{ text: classes.menuButtonText }}
+                  >
+                    {element.name}
+                  </Button>
+                </Link>
+              ))}
+            </div>
+          </Hidden>
+
+          {/* Right Section (Blog, Register, Login) */}
+          <div className={classes.rightLinks}>
             <Hidden mdUp>
               <IconButton
                 className={classes.menuButton}
@@ -97,7 +125,7 @@ function NavBar(props) {
               </IconButton>
             </Hidden>
             <Hidden mdDown>
-              {menuItems.map(element => {
+              {rightMenuItems.map(element => {
                 if (element.link) {
                   return (
                     <Link
@@ -133,7 +161,7 @@ function NavBar(props) {
         </Toolbar>
       </AppBar>
       <NavigationDrawer
-        menuItems={menuItems}
+        menuItems={[...centerMenuItems, ...rightMenuItems]} // Combine for mobile drawer
         anchor="right"
         open={mobileDrawerOpen}
         selectedItem={selectedTab}

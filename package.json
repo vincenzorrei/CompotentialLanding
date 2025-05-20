@@ -1,5 +1,5 @@
 {
-  "name": "react-saas-template",
+  "name": "compotential",
   "version": "1.0.0",
   "private": true,
   "homepage": "",
@@ -68,11 +68,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dunky11/react-saas-template.git"
+    "url": "git+https://github.com/Compotential/CompotentialLanding.git"
   },
   "author": "dunky11",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dunky11/react-saas-template/issues"
+    "url": "https://github.com/Compotential/CompotentialLanding/issues"
   }
 }

@@ -1,13 +1,5 @@
-# React SaaS Template
-Remains of a SaaS business I once tried to build. Now transformed into a template for building an SaaS/admin application using React + Material-UI.
-
-[**Check out the demo**](https://reactsaastemplate.com)
-
-![Node.js CI](https://github.com/dunky11/react-saas-template/workflows/Node.js%20CI/badge.svg)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-
-[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com "Go to demo website")
-
+# Compotential Landing Page
+Landing page for Compotential.
 
 ## Getting Started
 
@@ -30,12 +22,12 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 1. Clone the repository
 
    ```
-   git clone https://github.com/dunky11/react-saas-template
+   git clone https://github.com/Compotential/CompotentialLanding.git
    ```
 2. Install dependencies, this can take a minute
 
    ```
-   cd react-saas-template
+   cd CompotentialLanding
    npm install
    ```
 3. Start the local server
@@ -82,4 +74,4 @@ Show your support by ⭐ the project. Pull requests are always welcome.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/Compotential/CompotentialLanding/blob/master/LICENSE) file for details.

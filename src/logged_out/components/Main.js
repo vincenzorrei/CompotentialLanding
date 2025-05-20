@@ -31,14 +31,13 @@ function Main(props) {
 
   const selectHome = useCallback(() => {
     smoothScrollTop();
-    document.title =
-      "WaVer - Free template for building a SaaS or admin application";
+    document.title = "Compotential - Landing Page";
     setSelectedTab("Home");
   }, [setSelectedTab]);
 
   const selectBlog = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Blog";
+    document.title = "Compotential - Blog";
     setSelectedTab("Blog");
   }, [setSelectedTab]);
 

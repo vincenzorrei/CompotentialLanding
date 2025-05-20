@@ -1,11 +1,12 @@
 import { createTheme, responsiveFontSizes, adaptV4Theme } from "@mui/material";
 
 // colors
-const primary = "#b3294e";
-const secondary = "#4829B2";
+const primary = "#00BFFF"; // Celeste
+const secondary = "#000080"; // Dark Navy Blue
+const orange = "#FFA500"; // Orange
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
-const background = "#f5f5f5";
+const background = "#f5f5f5"; // Light grey background
 const warningLight = "rgba(253, 200, 69, .3)";
 const warningMain = "rgba(253, 200, 69, .5)";
 const warningDark = "rgba(253, 200, 69, .7)";
@@ -120,7 +121,8 @@ const theme = createTheme(adaptV4Theme({
     }
   },
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
+    fontFamily: '"Gilroy", "Roboto", "Helvetica", "Arial", sans-serif'
   }
 }));
 
